@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     public float deceleration;
     private Rigidbody2D bikeBody;
     private Vector2 playerDirection;
-    public float tiltAngle = 5f;
-    public float tiltSpeed = 5f; // Speed of tilting transition
+    public float tiltAngle;
+    public float tiltSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +34,7 @@ public class Player : MonoBehaviour
             playerDirection = new Vector2(0, directionY).normalized;
             playerSpeed += acceleration * Time.deltaTime; // Increase speed
 
-            // Calculate the tilt angle based on direction
-            float targetTilt = directionY > 0 ? tiltAngle : -tiltAngle;
+            float targetTilt = directionY > 0 ? tiltAngle : -tiltAngle; //Determine Tilt Direction (Up/Down)
             // Smoothly rotate the player to the target tilt
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, targetTilt), tiltSpeed * Time.deltaTime);
         }
@@ -43,7 +42,7 @@ public class Player : MonoBehaviour
         {
             playerSpeed -= deceleration * Time.deltaTime; // Decrease speed
 
-            // Smoothly reset rotation to neutral
+            // Smoothly rotate the player to neutral
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), tiltSpeed * Time.deltaTime);
         }
 

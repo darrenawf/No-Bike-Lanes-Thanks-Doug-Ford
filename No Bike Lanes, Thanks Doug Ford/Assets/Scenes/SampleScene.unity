@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 142771532}
   m_Layer: 0
   m_Name: Bottom Border
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 1158591203}
   m_Layer: 0
   m_Name: Top Border
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 1278591795}
   m_Layer: 0
   m_Name: Borders
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -929,8 +929,8 @@ MonoBehaviour:
   acceleration: 4
   maxSpeed: 3
   deceleration: 5
-  tiltAngle: 15
-  tiltSpeed: 5
+  tiltAngle: 20
+  tiltSpeed: 4
 --- !u!61 &1390798703
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -988,7 +988,7 @@ GameObject:
   - component: {fileID: 1408423732}
   m_Layer: 0
   m_Name: Left Border (Destroy)
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1065,7 +1065,7 @@ GameObject:
   - component: {fileID: 1620544506}
   m_Layer: 0
   m_Name: Right Border (Destroy)
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
