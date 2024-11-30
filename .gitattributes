@@ -1,1 +1,8 @@
+# Prioritize C# as the main language
 *.cs linguist-language=C#
+
+# Exclude ShaderLab files from language detection
+*.shader linguist-detectable=false
+
+# Exclude Unity meta files from language detection
+*.meta linguist-detectable=false
