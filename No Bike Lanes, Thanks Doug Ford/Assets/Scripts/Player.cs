@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private Vector2 playerDirection;
     public float tiltAngle;
     public float tiltSpeed;
+    public AudioSource bellRing;
 
     // Start is called before the first frame update
     void Start()
@@ -48,11 +49,33 @@ public class Player : MonoBehaviour
 
         // Clamp current speed to maxSpeed and 0 (no negative speed)
         playerSpeed = Mathf.Clamp(playerSpeed, 0, maxSpeed);
+
+        // Play sound effect when 'R' key is pressed
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            PlayBellRing();
+        }
     }
 
     void FixedUpdate()
     {
         // Apply vertical movement only
         bikeBody.velocity = new Vector2(0, playerDirection.y * playerSpeed);
+    }
+
+    // Method to play sound effect
+    void PlayBellRing()
+    {
+        if (bellRing != null)
+        {
+            if (!bellRing.isPlaying) // Prevent overlapping sound
+            {
+                bellRing.Play();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("BellRing AudioSource is not assigned!");
+        }
     }
 }
