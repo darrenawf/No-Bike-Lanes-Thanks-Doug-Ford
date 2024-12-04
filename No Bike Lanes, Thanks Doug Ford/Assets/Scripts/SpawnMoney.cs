@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SpawnPeople : MonoBehaviour
+public class SpawnMoney : MonoBehaviour
 {
     //Variables
-    public GameObject personOne;
-    public GameObject personTwo;
-    public GameObject personThree;
+    public GameObject moneyObj;
+    public GameObject coinObj;
     public float maxX;
     public float maxY;
     public float minX;
@@ -27,7 +26,7 @@ public class SpawnPeople : MonoBehaviour
         if (Time.time >= spawnTime)
         {
             Spawn();
-            spawnTime = Random.Range(1f, 5f);
+            spawnTime = Random.Range(0.1f, 4f);
             spawnTime = Time.time + spawnTime; //Reset spawn time
         }
     }
@@ -38,18 +37,15 @@ public class SpawnPeople : MonoBehaviour
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
         float randNum = Random.Range(0f, 1f);
-        if (randNum <= 1f && randNum > 0.6f) // 40% Person 1
+        if (randNum <= 1f && randNum > 0.7f) // 30% Money
         {
-            Instantiate(personOne, transform.position + new Vector3(randomX, randomY, 0), transform.rotation);
+            Instantiate(moneyObj, transform.position + new Vector3(randomX, randomY, 0), transform.rotation);
         }
-        else if (randNum <= 0.6f && randNum > 0.2f) // 40% Person 2
+        else // 70% Coin
         {
-            Instantiate(personTwo, transform.position + new Vector3(randomX, randomY, 0), transform.rotation);
+            Instantiate(coinObj, transform.position + new Vector3(randomX, randomY, 0), transform.rotation);
         }
-        else  // 30% Person 3
-        {
-            Instantiate(personThree, transform.position + new Vector3(randomX, randomY, 0), transform.rotation);
-        }
+        
     }
 }
 
