@@ -8,3 +8,14 @@
 
 # Exclude Unity meta files from language detection
 *.meta linguist-detectable=false
+
+# Exclude ASP.NET-related files from language detection
+*.aspx linguist-detectable=false
+*.ascx linguist-detectable=false
+*.master linguist-detectable=false
+*.sitemap linguist-detectable=false
+*.ashx linguist-detectable=false
+*.asmx linguist-detectable=false
+*.config linguist-detectable=false
+*.resx linguist-detectable=false
+*.webinfo linguist-detectable=false
