@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Timer : MonoBehaviour
+public class CanvasMod : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText; // Timer text field
     [SerializeField] private TextMeshProUGUI moneyText; // Money text field
@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     public int moneyValue;
 
     private int moneyCollected = 0; // Tracks how much money has been collected
+    private int coinsCollected = 0; // Tracks how much money has been collected
     private const int startingMoney = 48000000; // Starting money amount
 
     // Public property to get the elapsed time
@@ -48,8 +49,21 @@ public class Timer : MonoBehaviour
 
         // Update the moneyText field with the formatted value
         moneyText.text = $"-${currentMoney:N0}";
+    }
+    public void UpdateCoin()
+    {
+        coinsCollected += 1; // Increment the money counter by 1
+        Debug.Log("Coins: "+coinsCollected+"/4");
+        if (coinsCollected == 4)
+        {
+            // Calculate the current total money
+            int currentMoney = startingMoney - moneyCollected;
 
-        // Debug log for money collection
-        Debug.Log($"Money collected! Current total: ${currentMoney:N0}");
+            // Update the moneyText field with the formatted value
+            moneyText.text = $"-${currentMoney:N0}";
+
+            // Reset Bar
+            coinsCollected = 0;
+        }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoneyCollect : MonoBehaviour
+public class CoinCollect : MonoBehaviour
 {
     private CanvasMod canvasMod; // Reference to the main UI logic
 
@@ -10,6 +10,10 @@ public class MoneyCollect : MonoBehaviour
     {
         // Find the canvasMod script in the scene
         canvasMod = FindObjectOfType<CanvasMod>();
+        if (canvasMod == null)
+        {
+            Debug.LogError("canvasMod script not found in the scene!");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,7 +21,7 @@ public class MoneyCollect : MonoBehaviour
         if (collision.CompareTag("Player") && canvasMod != null)
         {
             // Call the method to update the money display
-            canvasMod.UpdateMoneyDisplay();
+            canvasMod.UpdateCoin();
 
             // Destroy the money prefab after being collected
             Destroy(this.gameObject);

@@ -10,7 +10,7 @@ public class GameOver : MonoBehaviour
     private bool isGameOver = false;
 
     // Reference to the Timer script
-    private Timer timer;
+    private CanvasMod timer;
 
     // Variable to store the total elapsed time
     public float totalElapsedTime;
@@ -18,7 +18,7 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         // Find the Timer component in the scene
-        timer = FindObjectOfType<Timer>();
+        timer = FindObjectOfType<CanvasMod>();
     }
 
     void Update()

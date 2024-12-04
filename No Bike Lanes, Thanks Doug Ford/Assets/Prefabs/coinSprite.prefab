@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6757749350116484609}
   - component: {fileID: 7863368736914026259}
   - component: {fileID: -660796264982365819}
-  - component: {fileID: -1814840820887103931}
+  - component: {fileID: -7021795592675662538}
   - component: {fileID: -8822772325673747758}
   - component: {fileID: -8132171133094941093}
   m_Layer: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSpeed: -4.78
---- !u!114 &-1814840820887103931
+--- !u!114 &-7021795592675662538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5575124928119364305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c70b7ead6f678e24c83b8b0116154a6d, type: 3}
+  m_Script: {fileID: 11500000, guid: 666392a75eb9a3c419642a1f6d8cc0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &-8822772325673747758
