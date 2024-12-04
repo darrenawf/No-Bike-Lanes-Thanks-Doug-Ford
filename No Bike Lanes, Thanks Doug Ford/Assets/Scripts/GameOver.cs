@@ -3,24 +3,36 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    // Assign this in the Inspector to show the Game Over screen
     public GameObject gameOverPanel;
-
-    // Reference to the Background Music Audio Source
     public AudioSource backgroundMusic;
-
-    // Reference to the oofSFX Audio Source
     public AudioSource oofSFX;
 
-    // Boolean to track if Game Over logic has been triggered
     private bool isGameOver = false;
+
+    // Reference to the Timer script
+    private Timer timer;
+
+    // Variable to store the total elapsed time
+    public float totalElapsedTime;
+
+    void Start()
+    {
+        // Find the Timer component in the scene
+        timer = FindObjectOfType<Timer>();
+    }
 
     void Update()
     {
-        // Check if the Player GameObject is missing and Game Over hasn't been triggered
         if (!isGameOver && GameObject.FindGameObjectWithTag("Player") == null)
         {
-            isGameOver = true; // Mark as Game Over to prevent multiple triggers
+            isGameOver = true;
+
+            // Stop the timer and save the total elapsed time
+            if (timer != null)
+            {
+                timer.StopTimer();
+                totalElapsedTime = timer.ElapsedTime;
+            }
 
             // Activate the Game Over panel
             gameOverPanel.SetActive(true);
@@ -36,17 +48,12 @@ public class GameOver : MonoBehaviour
             {
                 oofSFX.PlayOneShot(oofSFX.clip);
             }
-            else
-            {
-                Debug.LogWarning("oofSFX AudioSource or its AudioClip is missing!");
-            }
         }
     }
 
     // Method to restart the current scene
     public void Restart()
     {
-        // Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
