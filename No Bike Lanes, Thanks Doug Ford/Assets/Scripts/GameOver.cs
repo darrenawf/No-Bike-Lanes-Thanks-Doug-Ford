@@ -3,17 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    //Variables
     public GameObject gameOverPanel;
     public AudioSource backgroundMusic;
     public AudioSource oofSFX;
-
     private bool isGameOver = false;
-
-    // Reference to the Timer script
     private CanvasMod timer;
-
-    // Variable to store the total elapsed time
-    public float totalElapsedTime;
+    public float totalTime;
 
     void Start()
     {
@@ -23,27 +19,28 @@ public class GameOver : MonoBehaviour
 
     void Update()
     {
+        // Game Over Function
         if (!isGameOver && GameObject.FindGameObjectWithTag("Player") == null)
         {
             isGameOver = true;
 
-            // Stop the timer and save the total elapsed time
+            // Stop the timer and save the total time
             if (timer != null)
             {
                 timer.StopTimer();
-                totalElapsedTime = timer.ElapsedTime;
+                totalTime = timer.ElapsedTime;
             }
 
-            // Activate the Game Over panel
+            // Activate Game Over panel
             gameOverPanel.SetActive(true);
 
-            // Stop the background music
+            // Stop background music
             if (backgroundMusic != null)
             {
                 backgroundMusic.Stop();
             }
 
-            // Play the oof sound effect once
+            // Play crash sfx
             if (oofSFX != null && oofSFX.clip != null)
             {
                 oofSFX.PlayOneShot(oofSFX.clip);
@@ -51,7 +48,7 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    // Method to restart the current scene
+    // Restart Scene
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

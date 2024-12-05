@@ -5,20 +5,19 @@ using TMPro;
 
 public class CanvasMod : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI timerText; // Timer text field
-    [SerializeField] private TextMeshProUGUI moneyText; // Money text field
-
+    //Variables
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI moneyText;
     private float elapsedTime;
     private bool isRunning = true;
-    public int moneyValue;
-
-    private int moneyCollected = 0; // Tracks how much money has been collected
-    private int coinsCollected = 0; // Tracks how much money has been collected
-    private const int startingMoney = 48000000; // Starting money amount
-
-    // Public property to get the elapsed time
+    private int moneyCollected = 0;
+    private int coinsCollected = 0;
+    private const int startingMoney = 48000000;
+    // Coin Bar Variables
+    private SpriteRenderer spriteRenderer;
+    // Get Object
     public float ElapsedTime => elapsedTime;
-
+    
     void Update()
     {
         // Update timer
@@ -33,37 +32,34 @@ public class CanvasMod : MonoBehaviour
         }
     }
 
-    // Method to stop the timer
+    // Stop Timer
     public void StopTimer()
     {
         isRunning = false;
     }
 
-    // Method to update the money display
+    // Update Money Display
     public void UpdateMoneyDisplay()
     {
-        moneyCollected += moneyValue; // Increment the money counter by 1
+        moneyCollected ++;
 
-        // Calculate the current total money
         int currentMoney = startingMoney - moneyCollected;
 
-        // Update the moneyText field with the formatted value
-        moneyText.text = $"-${currentMoney:N0}";
+        moneyText.text = $"-${currentMoney:N0}"; // Update Text Field
     }
+    //Update Coin
     public void UpdateCoin()
     {
-        coinsCollected += 1; // Increment the money counter by 1
+        coinsCollected ++;
         Debug.Log("Coins: "+coinsCollected+"/4");
+
         if (coinsCollected == 4)
         {
-            // Calculate the current total money
             int currentMoney = startingMoney - moneyCollected;
 
-            // Update the moneyText field with the formatted value
-            moneyText.text = $"-${currentMoney:N0}";
+            moneyText.text = $"-${currentMoney:N0}"; // Update Text Field
 
-            // Reset Bar
-            coinsCollected = 0;
+            coinsCollected = 0;// Reset Bar
         }
     }
 }

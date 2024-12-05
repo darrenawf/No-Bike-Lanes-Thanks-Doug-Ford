@@ -5,52 +5,53 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Variables
+    private Rigidbody2D bikeBody;
+    private Vector2 playerDirection;
     public float playerSpeed;
     public float acceleration;
     public float maxSpeed;
     public float deceleration;
-    private Rigidbody2D bikeBody;
-    private Vector2 playerDirection;
     public float tiltAngle;
     public float tiltSpeed;
     public AudioSource bellRing;
 
-    // Start is called before the first frame update
     void Start()
     {
         bikeBody = GetComponent<Rigidbody2D>();
-
-        // Lock horizontal movement completely
+        // Prevent horizontal movement
         bikeBody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Set direction to vertical
         float directionY = Input.GetAxisRaw("Vertical");
 
-        // Set direction based on input
+        // Detects input
         if (directionY != 0)
         {
+            // Allow for veritcal movement
             playerDirection = new Vector2(0, directionY).normalized;
-            playerSpeed += acceleration * Time.deltaTime; // Increase speed
-
-            float targetTilt = directionY > 0 ? tiltAngle : -tiltAngle; //Determine Tilt Direction (Up/Down)
-            // Smoothly rotate the player to the target tilt
+            // Increase speed
+            playerSpeed += acceleration * Time.deltaTime;
+            //Determine Tilt Direction Up/Down
+            float targetTilt = directionY > 0 ? tiltAngle : -tiltAngle; 
+            // Smooth rotation towards input direction up/down
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, targetTilt), tiltSpeed * Time.deltaTime);
         }
+        // If no input
         else
         {
-            playerSpeed -= deceleration * Time.deltaTime; // Decrease speed
-
-            // Smoothly rotate the player to neutral
+            // Decrease speed
+            playerSpeed -= deceleration * Time.deltaTime; 
+            // Smooth rotation towards nuetral posistion
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), tiltSpeed * Time.deltaTime);
         }
 
-        // Clamp current speed to maxSpeed and 0 (no negative speed)
+        // Declare playerspeed to be within the range of 0 and maxSpeed
         playerSpeed = Mathf.Clamp(playerSpeed, 0, maxSpeed);
 
-        // Play sound effect when 'R' key is pressed
+        // Play bike ring sfx when 'R' is pressed
         if (Input.GetKeyDown(KeyCode.R))
         {
             PlayBellRing();
@@ -59,23 +60,21 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Apply vertical movement only
+        //Move Bike Vertically Up/Down)
         bikeBody.velocity = new Vector2(0, playerDirection.y * playerSpeed);
     }
 
-    // Method to play sound effect
+    // Play Bell Ring
     void PlayBellRing()
     {
         if (bellRing != null)
         {
-            if (!bellRing.isPlaying) // Prevent overlapping sound
+            // Prevent Overlapping Sound
+            if (!bellRing.isPlaying) 
             {
+                //Play sound
                 bellRing.Play();
             }
-        }
-        else
-        {
-            Debug.LogWarning("BellRing AudioSource is not assigned!");
         }
     }
 }

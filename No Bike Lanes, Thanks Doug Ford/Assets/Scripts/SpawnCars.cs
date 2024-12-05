@@ -18,30 +18,32 @@ public class SpawnCars : MonoBehaviour
     public float minY;
     public float timeBetween;
     private float spawnTime;
-    // Start is called before the first frame update
+
     void Start()
     {
+        // Initial spawn time
         spawnTime = Time.time + timeBetween;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Spawn every interval of spawnTime
         if (Time.time >= spawnTime)
         {
             Spawn();
-            spawnTime = Time.time + timeBetween; //Reset spawn time
+            //Reset spawn time
+            spawnTime = Time.time + timeBetween;
         }
     }
-
-    // Spawn object within range
+    // Randomly Spawn Objects
     void Spawn()
     {
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
 
         float randNum = Random.Range(0f, 1f);
-        if (randNum <= 0.9f) // 10% Cars
+        // 90% Cars
+        if (randNum <= 0.9f)
         {
             if (randNum <= 0.9f && randNum > 0.65f)
             { //BLUE CAR
@@ -64,7 +66,8 @@ public class SpawnCars : MonoBehaviour
                 Instantiate(carYellow, transform.position + new Vector3(randomX, randomY, 0), transform.rotation);
             }
         }
-        else  // 10% Busses
+        // 10% Busses
+        else
         {
             //Adjust for bus width in lane
             if (randomY > 0.55f)

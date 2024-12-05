@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ButtonCursor : MonoBehaviour
 {
-    public Texture2D pointerCursor; // Assign a pointer cursor texture in the Inspector
+    public Texture2D pointerCursor;
 
     private void OnMouseEnter()
     {
@@ -13,6 +13,6 @@ public class ButtonCursor : MonoBehaviour
 
     private void OnMouseExit()
     {
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto); // Reset to the default cursor
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 }

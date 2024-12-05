@@ -3,19 +3,19 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     private GameObject player;
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("Collided with: " + collision.name); //LOG
+        // Destroy obstacle if it collides with border
         if (collision.CompareTag("Border"))
         {
             Destroy(this.gameObject);
         }
-        else if (collision.CompareTag("Player"))
+        // Destory player if it collides with obstacle
+        if (collision.CompareTag("Player"))
         {
             Destroy(player.gameObject);
         }

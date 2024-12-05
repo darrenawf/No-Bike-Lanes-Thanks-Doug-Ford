@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class MoneyCollect : MonoBehaviour
 {
-    private CanvasMod canvasMod; // Reference to the main UI logic
+    private CanvasMod canvasMod;
 
     private void Start()
     {
-        // Find the canvasMod script in the scene
         canvasMod = FindObjectOfType<CanvasMod>();
     }
 
@@ -16,10 +15,10 @@ public class MoneyCollect : MonoBehaviour
     {
         if (collision.CompareTag("Player") && canvasMod != null)
         {
-            // Call the method to update the money display
+            // Update Money Display
             canvasMod.UpdateMoneyDisplay();
 
-            // Destroy the money prefab after being collected
+            // Destroy Money Object
             Destroy(this.gameObject);
         }
     }
