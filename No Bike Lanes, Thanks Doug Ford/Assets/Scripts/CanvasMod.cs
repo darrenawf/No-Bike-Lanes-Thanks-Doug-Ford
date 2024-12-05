@@ -5,19 +5,30 @@ using TMPro;
 
 public class CanvasMod : MonoBehaviour
 {
-    //Variables
+    // Text Field and UI References
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI totalMoneyText;
     [SerializeField] private TextMeshProUGUI moneyText;
+    // Variables
     private float elapsedTime;
     private bool isRunning = true;
     private int moneyCollected = 0;
     private int coinsCollected = 0;
+    private int currentMoney;
     private const int startingMoney = 48000000;
-    // Coin Bar Variables
-    private SpriteRenderer spriteRenderer;
     // Get Object
     public float ElapsedTime => elapsedTime;
-    
+    // Add a SpriteRenderer reference
+    [SerializeField] private SpriteRenderer coinBarRenderer;
+
+    // Add references to the sprites
+    [SerializeField] private Sprite[] coinBarSprites;
+    //Sounds
+    public AudioSource coinCollect;
+    public AudioSource moneyCollect;
+    public AudioSource moneyExchange;
+    public AudioSource noMoney;
+
     void Update()
     {
         // Update timer
@@ -36,30 +47,73 @@ public class CanvasMod : MonoBehaviour
     public void StopTimer()
     {
         isRunning = false;
+        totalMoneyText.text = "You collected: $" + moneyCollected + "\n out of $48,000,000 in government debt it will cost to remove the bike lanes!!!";
     }
 
     // Update Money Display
     public void UpdateMoneyDisplay()
     {
-        moneyCollected ++;
+        PlayMoneyCollect();
 
-        int currentMoney = startingMoney - moneyCollected;
+        moneyCollected++;
+
+        currentMoney = startingMoney - moneyCollected;
 
         moneyText.text = $"-${currentMoney:N0}"; // Update Text Field
     }
-    //Update Coin
+    void PlayMoneyCollect()
+    {
+        moneyCollect.Play();
+    }
+
+    // Update Coin
     public void UpdateCoin()
     {
-        coinsCollected ++;
-        Debug.Log("Coins: "+coinsCollected+"/4");
-
+        PlayCoinCollect();
         if (coinsCollected == 4)
         {
-            int currentMoney = startingMoney - moneyCollected;
+            return;
+        }
+        // Update Coins Collected
+        coinsCollected++;
+        Debug.Log("Coins: " + coinsCollected + "/4");
 
-            moneyText.text = $"-${currentMoney:N0}"; // Update Text Field
-
-            coinsCollected = 0;// Reset Bar
+        coinBarRenderer.sprite = coinBarSprites[coinsCollected];
+    }
+    public void UseCoins()
+    {
+        if (coinsCollected == 4)
+        {
+            PlayMoneyExchange();
+            moneyCollected++;
+            currentMoney = startingMoney - moneyCollected;
+            // Update Text Field
+            moneyText.text = $"-${currentMoney:N0}";
+            // Change sprite to first frame
+            coinBarRenderer.sprite = coinBarSprites[0];
+            // Reset Bar
+            coinsCollected = 0;
+        }
+        else
+        {
+            PlayNoMoney();
+        }
+    }
+    void PlayCoinCollect()
+    {
+        coinCollect.Play();
+    }
+    void PlayMoneyExchange()
+    {
+        moneyExchange.Play();
+    }
+    void PlayNoMoney()
+    {
+        // Prevent Overlapping Sound
+        if (!noMoney.isPlaying)
+        {
+            // Play sound
+            noMoney.Play();
         }
     }
 }
