@@ -1,3 +1,6 @@
+/*
+Attached: Game Manager
+*/
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

@@ -1,3 +1,6 @@
+/*
+Attached: All Car/Bus/People Prefabs
+*/
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour

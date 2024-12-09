@@ -1,3 +1,6 @@
+/*
+Attached: Game Manager, Buttons
+*/
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

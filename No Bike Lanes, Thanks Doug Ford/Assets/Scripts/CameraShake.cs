@@ -1,3 +1,6 @@
+/*
+Attached: Main Camera
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +37,7 @@ public class CameraShake : MonoBehaviour
         isShaking = true;
 
         float elapsedTime = 0f;
-        // Size during camera shake
+        
         float initialSize = 4.25f;
         // Default Size
         float targetSize = 4.5f;
