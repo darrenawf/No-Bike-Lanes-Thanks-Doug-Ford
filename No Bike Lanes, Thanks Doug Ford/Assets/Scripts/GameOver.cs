@@ -10,7 +10,7 @@ public class GameOver : MonoBehaviour
     private bool isGameOver = false;
     private CanvasMod timer;
     private CameraShake cameraShake;
-    private float totalTime;
+    public float totalTime = 0;
     //Camera Shake
     public float shakeDuration;
     public float shakeMagnitude;

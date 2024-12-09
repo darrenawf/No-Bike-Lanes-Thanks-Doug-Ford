@@ -8,16 +8,9 @@ public class CameraShake : MonoBehaviour
     private bool isShaking = false;
     private Camera mainCamera;
 
-    // Start is called before the first frame update
     void Start()
     {
-        mainCamera = Camera.main; // Get the main camera reference
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        mainCamera = Camera.main;
     }
 
     public void ShakeCamera(float duration, float severity, bool vertical, bool horizontal)
@@ -27,7 +20,6 @@ public class CameraShake : MonoBehaviour
             return;
         }
         
-        // Set the initial camera size to 4.25 during the shake
         if (mainCamera != null)
         {
             mainCamera.orthographicSize = 4.25f;
@@ -42,8 +34,10 @@ public class CameraShake : MonoBehaviour
         isShaking = true;
 
         float elapsedTime = 0f;
-        float initialSize = 4.25f; // Initial orthographic size during shake
-        float targetSize = 4.5f;   // Final orthographic size after shake
+        // Size during camera shake
+        float initialSize = 4.25f;
+        // Default Size
+        float targetSize = 4.5f;
 
         while (elapsedTime < duration)
         {
@@ -73,7 +67,7 @@ public class CameraShake : MonoBehaviour
             yield return null;
         }
 
-        // Reset the camera position and size after shaking
+        // Reset camera position and size after shaking
         transform.localPosition = originalPosition;
         if (mainCamera != null)
         {
