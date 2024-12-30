@@ -1,15 +1,15 @@
-# Prioritize C# as the main language
+# Display C# as the main language
 *.cs linguist-language=C#
 
-# Exclude ShaderLab, HLSL, and other shader-related files from language detection
+# Exclude ShaderLab HLSL files
 *.shader linguist-detectable=false
 *.hlsl linguist-detectable=false
 *.cginc linguist-detectable=false
 
-# Exclude Unity meta files from language detection
+# Exclude Unity files
 *.meta linguist-detectable=false
 
-# Exclude ASP.NET-related files from language detection
+# Exclude ASP.NET files
 *.aspx linguist-detectable=false
 *.ascx linguist-detectable=false
 *.master linguist-detectable=false
